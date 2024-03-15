@@ -1,3 +1,5 @@
+import cluster from 'cluster';
+import os from 'os';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -8,22 +10,31 @@ import { authRouter, hotelRouter, bookingRouter, roomRouter } from './routes/ind
 import { ErrorHandler, VerifyToken, CheckRole } from './middlewares/index.js';
 import swaggerDocs from './swagger.js';
 
-const app = express();
+const totalCPUs = os.cpus().length;
 
-app.use(cors());
-app.use(cookieParser());
-app.use(express.json());
+if (cluster.isPrimary) {
+  //console.log(`Primary ${process.pid} is running`);
+  for (let i = 0; i < totalCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  const app = express();
 
-app.use(`${BASE_URL}/auth`, authRouter);
+  app.use(cors());
+  app.use(cookieParser());
+  app.use(express.json());
 
-app.use(VerifyToken);
-app.use(CheckRole);
+  app.use(`${BASE_URL}/auth`, authRouter);
 
-app.use(BASE_URL, hotelRouter);
-app.use(BASE_URL, bookingRouter);
-app.use(BASE_URL, roomRouter);
+  app.use(VerifyToken);
+  app.use(CheckRole);
 
-app.use(ErrorHandler);
+  app.use(BASE_URL, hotelRouter);
+  app.use(BASE_URL, bookingRouter);
+  app.use(BASE_URL, roomRouter);
 
-app.listen(environment.appPort, () => console.log('Server listening on port ' + environment.appPort));
-swaggerDocs(app, environment.appPort);
+  app.use(ErrorHandler);
+
+  app.listen(environment.appPort, () => console.log('Server listening on port ' + environment.appPort));
+  swaggerDocs(app, environment.appPort);
+}
