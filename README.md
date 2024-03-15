@@ -80,6 +80,8 @@ APIs List with sample data:
           "success": true,
           "message": "Hotel Added Successfully"
          }
+   <img width="1001" alt="Screenshot 2024-03-15 at 4 13 18 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/b6b57739-c4f3-459d-b275-433bfe2ee508">
+
 
    2.2 Get Hotels
    ---------------------
@@ -122,6 +124,8 @@ APIs List with sample data:
             }
         ]
     }
+   <img width="1022" alt="Screenshot 2024-03-15 at 4 14 09 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/92129965-ac12-4d71-ae9f-e57187eee19f">
+
 
    2.3 Update Hotel
    ---------------------
@@ -139,6 +143,8 @@ APIs List with sample data:
           "success": true,
           "message": "Hotel Updated Successfully"
          }
+   <img width="994" alt="Screenshot 2024-03-15 at 4 14 47 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/7fdb6af1-902a-4b09-8612-cac7ef42df3f">
+
 
    2.4 Delete Hotel
    ---------------------
@@ -152,8 +158,10 @@ APIs List with sample data:
           "success": true,
           "message": "Hotel Deleted Successfully"
          }
+   <img width="1008" alt="Screenshot 2024-03-15 at 4 15 27 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/ed9b6db9-cece-4055-a11e-0f1f66a03c84">
 
-4. Hotel Rooms APIs:
+
+5. Hotel Rooms APIs:
    ---------
    3.1 Create Room
    ---------------------
@@ -173,6 +181,8 @@ APIs List with sample data:
           "success": true,
           "message": "Room Added Successfully"
          }
+   <img width="1004" alt="Screenshot 2024-03-15 at 4 16 36 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/05c97437-ccec-4229-9827-94c1f2b51f26">
+
 
    3.2 Get Rooms
    ---------------------
@@ -210,6 +220,8 @@ APIs List with sample data:
                     }
                 ]
             }
+   <img width="1018" alt="Screenshot 2024-03-15 at 4 17 14 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/29a2fad5-cb5f-48f4-ba3f-3cc6a39c1120">
+
 
    3.3 Update Room
    ---------------------
@@ -227,6 +239,8 @@ APIs List with sample data:
           "success": true,
           "message": "Room Updated Successfully"
          }
+   <img width="1014" alt="Screenshot 2024-03-15 at 4 17 46 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/735e0825-df52-4b41-9b48-ef0c279e7825">
+
 
    3.4 Delete Room
    ---------------------
@@ -240,8 +254,10 @@ APIs List with sample data:
           "success": true,
           "message": "Room Deleted Successfully"
          }
+   <img width="1013" alt="Screenshot 2024-03-15 at 4 18 28 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/72d6745a-eaa3-4e8e-8a44-d3a428460633">
 
-5. Hotel Rooms APIs:
+
+7. Hotel Rooms APIs:
    ---------
    4.1 Make Booking
    ---------------------
@@ -260,6 +276,8 @@ APIs List with sample data:
           "success": true,
           "message": "Hotel Booked Successfully"
          }
+   <img width="1000" alt="Screenshot 2024-03-15 at 4 19 02 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/ccceddae-9070-4e31-af05-d8885809d528">
+
 
    4.2 View Bookings
    ---------------------
@@ -306,6 +324,8 @@ APIs List with sample data:
                     }
                 ]
             }
+   <img width="1017" alt="Screenshot 2024-03-15 at 4 19 47 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/eddef693-3cd2-4afc-834c-51dfffabd591">
+
 
    4.3 Cancel Booking
    ---------------------
@@ -319,6 +339,8 @@ APIs List with sample data:
           "success": true,
           "message": "Booking cancelled successfully"
          }
+   <img width="1002" alt="Screenshot 2024-03-15 at 4 20 19 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/c67ac893-9c4b-4928-9980-6dd265c205cc">
+
 
 
 Below are some screenshots of the swagger(OpenAPI 3.0 version) API Documentation UI:
