@@ -86,13 +86,7 @@ APIs List with sample data:
    Method: GET
    Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
                   again to generate the new token and use that token to test APIs.
-   Body:
-          {
-              "hotelName": "Dummy Hotel",
-              "city": "Pune",
-              "address": "Magarpatta",
-              "rating": 1
-          }
+   Query Params: to search hotel name use { hotelName: 'Hyatt' }.
    Response:
     {
         "success": true,
@@ -157,3 +151,173 @@ APIs List with sample data:
           "success": true,
           "message": "Hotel Deleted Successfully"
          }
+
+3. Hotel Rooms APIs:
+   ---------
+   3.1 Create Room
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/room
+   Method: POST
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   Body:
+         {
+             "hotelId": 1,
+             "roomNo": 301,
+             "floor": 3,
+             "roomPrice": 2500
+         }
+   Response:
+         {
+          "success": true,
+          "message": "Room Added Successfully"
+         }
+
+   3.2 Get Rooms
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/room?hotelId=1
+   Method: GET
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   QUERY Params: { hotelId: 1}
+   Response:
+            {
+                "success": true,
+                "message": "Room fetched successfully",
+                "data": [
+                    {
+                        "id": 1,
+                        "hotelId": 1,
+                        "roomNo": 101,
+                        "floor": 1,
+                        "roomPrice": 1000,
+                        "isBooked": false,
+                        "createdOn": "2024-03-15T08:00:36.000Z",
+                        "modifiedOn": "2024-03-15T08:00:36.000Z",
+                        "hotel_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "hotelId": 1,
+                        "roomNo": 102,
+                        "floor": 1,
+                        "roomPrice": 1000,
+                        "isBooked": false,
+                        "createdOn": "2024-03-15T08:00:45.000Z",
+                        "modifiedOn": "2024-03-15T08:00:45.000Z",
+                        "hotel_id": 1
+                    }
+                ]
+            }
+
+   3.3 Update Room
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/room
+   Method: PUT
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   Body:
+         {
+             "id": 5,
+             "roomPrice": 2000
+         }
+   Response:
+         {
+          "success": true,
+          "message": "Room Updated Successfully"
+         }
+
+   3.4 Delete Room
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/room/5
+   Method: DELETE
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   PARAMS: Mentioned in URL Path itself. '.../5'
+   Response:
+         {
+          "success": true,
+          "message": "Room Deleted Successfully"
+         }
+
+4. Hotel Rooms APIs:
+   ---------
+   4.1 Make Booking
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/booking
+   Method: POST
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   Body:
+         {
+             "userId": 1,
+             "hotelId": 1,
+             "roomId": 2
+         }
+   Response:
+         {
+          "success": true,
+          "message": "Hotel Booked Successfully"
+         }
+
+   4.2 View Bookings
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/booking?userId=1
+   Method: GET
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   QUERY Params: { userId: 1}
+   Response:
+            {
+                "success": true,
+                "message": "User bookings fetched successfully",
+                "data": [
+                    {
+                        "id": 1,
+                        "userId": 1,
+                        "hotelId": 1,
+                        "roomId": 1,
+                        "createdOn": "2024-03-15T08:22:51.000Z",
+                        "modifiedOn": "2024-03-15T08:22:51.000Z",
+                        "user_id": 1,
+                        "hotel_id": 1,
+                        "room_id": 1,
+                        "hotel": {
+                            "id": 1,
+                            "hotelName": "Hyatt Regency",
+                            "city": "Delhi",
+                            "address": "rk puram, south delhi",
+                            "rating": 5,
+                            "createdOn": "2024-03-15T07:12:07.000Z",
+                            "modifiedOn": "2024-03-15T07:12:07.000Z"
+                        },
+                        "hotelRoom": {
+                            "id": 1,
+                            "hotelId": 1,
+                            "roomNo": 101,
+                            "floor": 1,
+                            "roomPrice": 1000,
+                            "isBooked": true,
+                            "createdOn": "2024-03-15T08:00:36.000Z",
+                            "modifiedOn": "2024-03-15T08:00:36.000Z",
+                            "hotel_id": 1
+                        }
+                    }
+                ]
+            }
+
+   4.3 Cancel Booking
+   ---------------------
+   URL: localhost:8800/hotel/bookings/api/booking/2
+   Method: DELETE
+   Authorization: Select type 'Bearer Token' in POSTMAN and add token generated from login API. If session time out then hiot login api 
+                  again to generate the new token and use that token to test APIs.
+   PARAMS: in URL -- '.../2'
+   Response:
+         {
+          "success": true,
+          "message": "Booking cancelled successfully"
+         }
+
+
+<img width="1418" alt="Screenshot 2024-03-15 at 4 01 57 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/16c1715b-1517-4dd7-94f4-8fea07bababc">
