@@ -32,6 +32,8 @@ APIs List with sample data:
           "success": true,
           "message": "User Registration Successful"
          }
+   <img width="1002" alt="Screenshot 2024-03-15 at 4 10 20 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/ad056f51-5f23-4b36-9472-725a1bd3b940">
+
    
    2.2 User Login
    --------------
@@ -59,7 +61,7 @@ APIs List with sample data:
             }
         }
 
-2. Hotel APIs:
+3. Hotel APIs:
    ---------
    2.1 Create Hotel
    ---------------------
@@ -152,7 +154,7 @@ APIs List with sample data:
           "message": "Hotel Deleted Successfully"
          }
 
-3. Hotel Rooms APIs:
+4. Hotel Rooms APIs:
    ---------
    3.1 Create Room
    ---------------------
@@ -240,7 +242,7 @@ APIs List with sample data:
           "message": "Room Deleted Successfully"
          }
 
-4. Hotel Rooms APIs:
+5. Hotel Rooms APIs:
    ---------
    4.1 Make Booking
    ---------------------
@@ -320,4 +322,11 @@ APIs List with sample data:
          }
 
 
+Below are some screenshots of the swagger(OpenAPI 3.0 version) API Documentation UI:
+--------------------------------------------------------------------------------------
 <img width="1418" alt="Screenshot 2024-03-15 at 4 01 57 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/16c1715b-1517-4dd7-94f4-8fea07bababc">
+
+<img width="1418" alt="Screenshot 2024-03-15 at 4 05 38 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/378a560a-88f8-488a-8d6a-678c1086b5ce">
+
+<img width="1409" alt="Screenshot 2024-03-15 at 4 08 04 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/2bfeb173-022e-4115-b057-9e130b255784">
+
