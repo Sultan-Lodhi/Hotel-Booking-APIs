@@ -1,3 +1,6 @@
+(NOTE: To view this file in better way click on 'raw')
+------------------------------------------------------
+
 Steps to run the project:
 -------------------------
 
