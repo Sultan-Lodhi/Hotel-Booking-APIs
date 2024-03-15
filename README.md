@@ -1,6 +1,3 @@
-(NOTE: To view this file in better way click on 'raw')
-------------------------------------------------------
-
 Steps to run the project:
 -------------------------
 
@@ -60,6 +57,8 @@ APIs List with sample data:
                 }
             }
         }
+   <img width="1003" alt="Screenshot 2024-03-15 at 4 12 09 PM" src="https://github.com/Sultan-Lodhi/Hotel-Booking-APIs/assets/78294923/014bbc1f-80b9-4498-9b64-36033961c0a5">
+
 
 3. Hotel APIs:
    ---------
