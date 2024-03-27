@@ -40,3 +40,30 @@ export const getUserBookingsDetails = async (userId) => {
   );
   return toPlainObject(result);
 };
+
+export const getEmployeeHotelData = async (employeeId) => {
+  const result = await db.hotelEmployees.findOne({ where: { employeeId } });
+  return toPlainObject(result);
+};
+
+export const getHotelBookingsData = async (hotelId) => {
+  const result = await db.userBookings.findAll(
+    {
+      include: [
+        {
+          model: db.users
+        },
+        {
+          model: db.hotels
+        },
+        {
+          model: db.hotelRooms
+        }
+      ]
+    },
+    {
+      where: { hotelId }
+    }
+  );
+  return toPlainObject(result);
+};

@@ -7,7 +7,10 @@ export const bookingSchemas = {
   makeBookingSchema: Joi.object().keys({
     userId: Joi.number().required(),
     hotelId: Joi.number().required(),
-    roomId: Joi.number().required()
+    roomId: Joi.number().required(),
+    noOfGuests: Joi.number().required(),
+    checkIn: Joi.date().required(),
+    checkOut: Joi.date().required()
   }),
   cancelBookingSchema: Joi.object().keys({
     id: Joi.number().required()

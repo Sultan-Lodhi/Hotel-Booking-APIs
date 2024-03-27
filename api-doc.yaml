@@ -1,0 +1,761 @@
+openapi: 3.0.0
+info:
+  title: Hotel Bookings APIs
+  description: API endpoints for a Hotel Bookings services documented on swagger
+  contact:
+    name: Sultan Lodhi
+    email: isultanlodhi@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8800/hotel/bookings/api
+    description: Local server
+  - url: <your live url here>
+    description: Live server
+
+paths:
+  /hotel:
+    get:
+      tags:
+        - Hotel APIs
+      summary: Get Hotels Data
+      description: Returns the array list of hotels details
+      parameters:
+        - name: hotelName
+          in: query
+          description: Hotel Name
+          schema:
+            type: string
+            example: JW Marriot
+        - name: city
+          in: query
+          description: City
+          schema:
+            type: string
+            example: Delhi
+        - name: x-accept-version
+          in: header
+          schema:
+            type: string
+            example: 1
+      responses:
+        200:
+          description: Hotels data fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getHotelsData'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+    post:
+      tags:
+        - Hotel APIs
+      summary: Create Hotel
+      description: Create New Hotel (By Admin Only)
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - hotelName
+                - city
+                - address
+                - rating
+              properties:
+                hotelName:
+                  type: string
+                  example: JW Marriot
+                city:
+                  type: string
+                  example: Delhi
+                address:
+                  type: string
+                  example: 121,hauz khas
+                rating:
+                  type: integer
+                  example: 3
+      responses:
+        200:
+          description: Hotel Added Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+    put:
+      tags:
+        - Hotel APIs
+      summary: Update Hotels Data
+      description: Update existing hotel details (By Admin Only)
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                hotelName:
+                  type: string
+                  example: JW Marriot
+                city:
+                  type: string
+                  example: Delhi
+                address:
+                  type: string
+                  example: 121,hauz khas
+                rating:
+                  type: integer
+                  example: 3
+      responses:
+        200:
+          description: Hotel Updated Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /hotel/employee:
+    post:
+      tags:
+        - Hotel APIs
+      summary: Add Employee to Hotel
+      description: Add New Employee to Hotel (By Admin Only)
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - userName
+                - email
+                - mobile
+                - password
+                - confirmPassword
+                - role
+                - hotelId
+              properties:
+                userName:
+                  type: string
+                  example: Sultan
+                email:
+                  type: string
+                  example: hdbfdjds@dh.com
+                mobile:
+                  type: string
+                  example: 668236874
+                password:
+                  type: string
+                  example: gdhs@6363
+                confirmPassword:
+                  type: string
+                  example: gdhs@6363
+                role:
+                  type: integer
+                  example: 3
+                hotelId:
+                  type: integer
+                  example: 2
+      responses:
+        200:
+          description: Employee added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /hotel/{id}:
+    delete:
+      tags:
+        - Hotel APIs
+      summary: Delete Hotel
+      description: Delete hotel from Database (By Admin only)
+      parameters:
+        - name: id
+          in: path
+          description: Hotel Id
+          required: true
+          schema:
+            type: integer
+            example: 2
+      responses:
+        200:
+          description: Hotel Deleted Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /auth/register:
+    post:
+      tags:
+        - Auth APIs
+      summary: User Registration
+      description: New User is registered in the platform
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - userName
+                - email
+                - mobile
+                - password
+                - confirmPassword
+                - role
+              properties:
+                userName:
+                  type: string
+                  example: Sultan
+                email:
+                  type: string
+                  example: hdbfdjds@dh.com
+                mobile:
+                  type: string
+                  example: 668236874
+                password:
+                  type: string
+                  example: gdhs@6363
+                confirmPassword:
+                  type: string
+                  example: gdhs@6363
+                role:
+                  type: integer
+                  example: 3
+      responses:
+        200:
+          description: User Registration Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /auth/login:
+    post:
+      tags:
+        - Auth APIs
+      summary: User Login
+      description: User login API to login into platform
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - userEmailMobile
+                - password
+              properties:
+                userEmailMobile:
+                  type: string
+                  example: isultanlodhi@gmail.com/78675453
+                password:
+                  type: string
+                  example: gdhs@6363
+      responses:
+        200:
+          description: User login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /auth/logout:
+    post:
+      tags:
+        - Auth APIs
+      summary: User Logout
+      description: Logout the user from the platform
+      responses:
+        200:
+          description: User Logged Out Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /room:
+    get:
+      tags:
+        - Room APIs
+      summary: Get Rooms Data
+      description: Returns the array list of Rooms data in a selected hotel
+      parameters:
+        - name: hotelId
+          in: query
+          description: Hotel Id
+          required: true
+          schema:
+            type: string
+            example: 1
+      responses:
+        200:
+          description: Rooms fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/viewRooms'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+    post:
+      tags:
+        - Room APIs
+      summary: Create Room
+      description: Create New Room in a Hotel (By Hotel Employee Only)
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - hotelId
+                - roomNo
+                - floor
+                - roomPrice
+              properties:
+                hotelId:
+                  type: integer
+                  example: 1
+                roomNo:
+                  type: ineteger
+                  example: 306
+                floor:
+                  type: integer
+                  example: 3
+                roomPrice:
+                  type: integer
+                  example: 1500
+      responses:
+        200:
+          description: Room added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+    put:
+      tags:
+        - Room APIs
+      summary: Update Room
+      description: Update existing room details (By Hotel Employee Only)
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                roomPrice:
+                  type: integer
+                  example: 1500
+                isBooked:
+                  type: boolean
+                  example: true
+      responses:
+        200:
+          description: Room Updated Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /room/{id}:
+    delete:
+      tags:
+        - Room APIs
+      summary: Delete Room
+      description: Delete Room in a hotel from Database (By Hotel Employee only)
+      parameters:
+        - name: id
+          in: path
+          description: Room Id
+          required: true
+          schema:
+            type: integer
+            example: 306
+      responses:
+        200:
+          description: Room Deleted Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /booking:
+    get:
+      tags:
+        - Booking APIs
+      summary: Get Customer Bookings
+      description: Returns the array list of Rooms booked in hotels by customer
+      parameters:
+        - name: userId
+          in: query
+          description: User Id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: User bookings fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/viewBookings'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+    post:
+      tags:
+        - Booking APIs
+      summary: Make Booking
+      description: Make Hotel Room booking (By Customer Only)
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              required:
+                - userId
+                - HotelId
+                - roomId
+                - noOfGuests
+                - checkIn
+                - checkOut
+              properties:
+                userId:
+                  type: integer
+                  example: 3
+                hotelId:
+                  type: integer
+                  example: 1
+                roomId:
+                  type: integer
+                  example: 3
+                noOfGuests:
+                  type: ineteger
+                  example: 2
+                checkIn:
+                  type: string
+                  example: 2024-03-26 00:00:00
+                checkOut:
+                  type: string
+                  example: 2024-03-27 00:00:00
+      responses:
+        200:
+          description: Hotel booked successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /booking/{id}:
+    delete:
+      tags:
+        - Booking APIs
+      summary: Cancel Booking
+      description: Cancel hotel room booking (Either By Customer or Hotel Employee)
+      parameters:
+        - name: id
+          in: path
+          description: Booking Id
+          required: true
+          schema:
+            type: integer
+            example: 306
+      responses:
+        200:
+          description: Booking cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successResponse'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+  /booking/employee:
+    get:
+      tags:
+        - Booking APIs
+      summary: Get All Customer Bookings
+      description: Returns the array list of Rooms booked in hotels by all customers
+      responses:
+        200:
+          description: All User Bookings fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/viewBookingsByEmployee'
+        401:
+          description: Unauthorized
+        403:
+          description: Access Denied
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal Server Error
+
+components:
+  schemas:
+    getHotelsData:
+      type: object
+      properties:
+        status:
+          type: integer
+          default: 200
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              hotelName:
+                type: string
+              city:
+                type: string
+              address:
+                type: string
+              rating:
+                type: integer
+    viewRooms:
+      type: object
+      properties:
+        status:
+          type: integer
+          default: 200
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              roomNo:
+                type: integer
+              floor:
+                type: integer
+              roomPrice:
+                type: integer
+              isBooked:
+                type: boolean
+    viewBookings:
+      type: object
+      properties:
+        status:
+          type: integer
+          default: 200
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              hotelName:
+                type: string
+              address:
+                type: string
+              city:
+                type: string
+              rating:
+                type: integer
+              roomNo:
+                type: integer
+              floor:
+                type: integer
+              roomPrice:
+                type: integer
+              noOfGuests:
+                type: integer
+              checkIn:
+                type: string
+              checkOut:
+                type: string
+    viewBookingsByEmployee:
+      type: object
+      properties:
+        status:
+          type: integer
+          default: 200
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              userName:
+                type: string
+              email:
+                type: string
+              mobile:
+                type: string
+              hotelName:
+                type: string
+              address:
+                type: string
+              city:
+                type: string
+              rating:
+                type: integer
+              roomNo:
+                type: integer
+              floor:
+                type: integer
+              roomPrice:
+                type: integer
+              noOfGuests:
+                type: integer
+              checkIn:
+                type: string
+              checkOut:
+                type: string
+    successResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          default: 200
+        success:
+          type: boolean
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

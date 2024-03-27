@@ -29,11 +29,10 @@ export default function (sequelize, DataTypes) {
         allowNull: false,
         field: 'password'
       },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
+      role: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 0,
-        field: 'is_admin'
+        field: 'role'
       },
       isActive: {
         type: DataTypes.BOOLEAN,

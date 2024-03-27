@@ -27,6 +27,10 @@ export const viewRooms = async (req, res, next) => {
       roomsData = await getAllData(HOTEL_ROOMS, { hotelId });
       setDataInRedis(ROOMS_DATA, roomsData);
     }
+    roomsData = roomsData.map((room) => {
+      const { id, roomNo, floor, roomPrice, isBooked } = room;
+      return { id, roomNo, floor, roomPrice, isBooked };
+    });
     successResponse(res, ROOMS_FETCHED_SUCCESSFULLY, roomsData);
   } catch (err) {
     next(err);

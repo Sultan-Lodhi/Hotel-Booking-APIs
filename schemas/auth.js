@@ -7,7 +7,7 @@ export const authSchemas = {
     mobile: Joi.string().required(),
     password: Joi.string().required(),
     confirmPassword: Joi.string().required(),
-    isAdmin: Joi.number().required()
+    role: Joi.number().required()
   }),
   userLoginSchema: Joi.object().keys({
     userEmailMobile: Joi.string().required(),

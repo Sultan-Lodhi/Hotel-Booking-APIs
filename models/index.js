@@ -7,6 +7,7 @@ import users from './users.js';
 import hotels from './hotels.js';
 import hotelRooms from './hotel_rooms.js';
 import userBookings from './user_bookings.js';
+import hotelEmployees from './hotel_employees.js';
 
 const db = {};
 const { dbDatabase, dbUser, dbPassword, dbHost, dbPort, dbDialect } = environment;
@@ -15,11 +16,11 @@ const sequelize = new Sequelize(dbDatabase, dbUser, dbPassword, {
   host: dbHost,
   port: dbPort,
   dialect: dbDialect,
-  logging: console.log,//false,
+  logging: false,
   timezone: '+05:30',
   dialectOptions: {
-    decimalNumbers: true,
-  },
+    decimalNumbers: true
+  }
 });
 
 /* adding models */
@@ -27,6 +28,7 @@ db.users = users(sequelize, DataTypes);
 db.hotels = hotels(sequelize, DataTypes);
 db.hotelRooms = hotelRooms(sequelize, DataTypes);
 db.userBookings = userBookings(sequelize, DataTypes);
+db.hotelEmployees = hotelEmployees(sequelize, DataTypes);
 
 /* adding associations */
 Object.keys(db).forEach((modelName) => {

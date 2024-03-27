@@ -4,6 +4,10 @@ export const hotelSchemas = {
   getHotelsSchema: Joi.object().keys({
     hotelName: Joi.string().optional()
   }),
+  getHotelsSchemaV2: Joi.object().keys({
+    hotelName: Joi.string().optional(),
+    city: Joi.string().optional()
+  }),
   createHotelSchema: Joi.object().keys({
     hotelName: Joi.string().required(),
     city: Joi.string().required(),
@@ -19,5 +23,14 @@ export const hotelSchemas = {
   }),
   deleteHotelSchema: Joi.object().keys({
     id: Joi.number().required()
+  }),
+  addHotelEmployeeSchema: Joi.object().keys({
+    userName: Joi.string().required(),
+    email: Joi.string().required(),
+    mobile: Joi.string().required(),
+    password: Joi.string().required(),
+    confirmPassword: Joi.string().required(),
+    role: Joi.number().required(),
+    hotelId: Joi.number().required()
   })
 };

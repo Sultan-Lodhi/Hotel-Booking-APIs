@@ -8,12 +8,11 @@ import './models/index.js';
 import { BASE_URL } from './constants/index.js';
 import { authRouter, hotelRouter, bookingRouter, roomRouter } from './routes/index.js';
 import { ErrorHandler, VerifyToken, CheckRole } from './middlewares/index.js';
-import swaggerDocs from './swagger.js';
+import { swaggerServe, swaggerSetup } from './swagger.js';
 
 const totalCPUs = os.cpus().length;
 
 if (cluster.isPrimary) {
-  //console.log(`Primary ${process.pid} is running`);
   for (let i = 0; i < totalCPUs; i++) {
     cluster.fork();
   }
@@ -36,5 +35,5 @@ if (cluster.isPrimary) {
   app.use(ErrorHandler);
 
   app.listen(environment.appPort, () => console.log('Server listening on port ' + environment.appPort));
-  swaggerDocs(app, environment.appPort);
+  app.use('/api-docs', swaggerServe, swaggerSetup);
 }

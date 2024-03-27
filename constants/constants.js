@@ -5,6 +5,7 @@ export const MESSAGES = {
   USER_ALREADY_EXIST: 'User already exists',
   USER_REGISTRATION_SUCCESSFUL: 'User Registration Successful',
   USER_LOGIN_SUCCESSFUL: 'User login successful',
+  USER_LOGGED_OUT_SUCCESSFULLY: 'User Logged Out Successfully',
   USER_NOT_FOUND: 'User not found',
   INVALID_CREDENTIALS: 'Invalid credentials',
   ACCESS_DENIED: 'Access Denied',
@@ -25,14 +26,17 @@ export const MESSAGES = {
   ROOM_ADDED_SUCCESSFULLY: 'Room added successfully',
   ROOM_UPDATED_SUCCESSFULLY: 'Room updated successfully',
   ROOM_DELETED_SUCCESSFULLY: 'Room deleted successfully',
-  ROOM_ALREADY_EXISTS: 'Room already exists'
+  ROOM_ALREADY_EXISTS: 'Room already exists',
+  API_VERSION_MISSING: 'API Version Missing in request headers',
+  EMPLOYEE_ADDED_SUCCESSFULLY: 'Employee added successfully'
 };
 
 export const MODELS = {
   USERS: 'users',
   HOTELS: 'hotels',
   HOTEL_ROOMS: 'hotelRooms',
-  USER_BOOKINGS: 'userBookings'
+  USER_BOOKINGS: 'userBookings',
+  HOTEL_EMPLOYEES: 'hotelEmployees'
 };
 
 export const GET = 'GET';
@@ -50,4 +54,9 @@ export const TOKEN_EXPIRY_TIME = '1h';
 export const REDIS_KEYS = {
   HOTELS_DATA: 'hotels_data',
   ROOMS_DATA: 'rooms_data'
+};
+
+export const API_VERSIONS = {
+  VERSION_1: '1',
+  VERSION_2: '2'
 };

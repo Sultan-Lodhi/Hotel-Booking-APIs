@@ -15,12 +15,13 @@ const {
   USER_REGISTRATION_SUCCESSFUL,
   USER_LOGIN_SUCCESSFUL,
   USER_NOT_FOUND,
-  INVALID_CREDENTIALS
+  INVALID_CREDENTIALS,
+  USER_LOGGED_OUT_SUCCESSFULLY
 } = MESSAGES;
 
 export const userRegisteration = async (req, res, next) => {
   try {
-    const { email, mobile, password, confirmPassword, userName, isAdmin } = req.body;
+    const { email, mobile, password, confirmPassword, userName, role } = req.body;
 
     if (password !== confirmPassword) return errorResponse(res, BAD_REQUEST, PASSWORDS_MISMATCH);
 
@@ -37,14 +38,13 @@ export const userRegisteration = async (req, res, next) => {
       email,
       mobile,
       password: hashedPassword,
-      isAdmin
+      role
     };
 
     const newUser = await insertSingleEntity(USERS, newUserData);
 
     successResponse(res, USER_REGISTRATION_SUCCESSFUL);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
@@ -56,18 +56,18 @@ export const userLogin = async (req, res, next) => {
     const user = await getSingleRecord(USERS, { [Op.or]: { email: userEmailMobile, mobile: userEmailMobile } });
     if (!user) return errorResponse(res, NOT_FOUND, USER_NOT_FOUND);
 
-    const { id, userName, email, mobile, isAdmin, isActive } = user;
+    const { id, userName, email, mobile, role, isActive } = user;
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) return errorResponse(res, UNAUTHORIZED, INVALID_CREDENTIALS);
 
-    const token = jwt.sign({ id, isAdmin }, environment.jwtSecretKey, {
+    const token = jwt.sign({ id, role }, environment.jwtSecretKey, {
       expiresIn: TOKEN_EXPIRY_TIME
     });
 
     const updateToken = await updateData(USERS, { token }, { id });
 
-    const data = { token, user: { id, userName, email, mobile, isAdmin, isActive } };
+    const data = { token, user: { id, userName, email, mobile, role, isActive } };
 
     successResponse(res, USER_LOGIN_SUCCESSFUL, data);
   } catch (err) {
@@ -80,7 +80,7 @@ export const userLogout = async (req, res, next) => {
     const userId = req.id;
     const logoutUser = await updateData(USERS, { token: 0 }, { id: userId });
 
-    successResponse(res, USER_LOGIN_SUCCESSFUL, data);
+    successResponse(res, USER_LOGGED_OUT_SUCCESSFULLY, data);
   } catch (err) {
     next(err);
   }

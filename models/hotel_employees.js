@@ -1,6 +1,6 @@
 export default function (sequelize, DataTypes) {
-  const hotelRooms = sequelize.define(
-    'hotelRooms',
+  const hotelEmployees = sequelize.define(
+    'hotelEmployees',
     {
       id: {
         type: DataTypes.BIGINT,
@@ -18,26 +18,14 @@ export default function (sequelize, DataTypes) {
           key: 'id'
         }
       },
-      roomNo: {
-        type: DataTypes.SMALLINT().UNSIGNED,
+      employeeId: {
+        type: DataTypes.BIGINT,
         allowNull: false,
-        field: 'room_no'
-      },
-      floor: {
-        type: DataTypes.SMALLINT().UNSIGNED,
-        allowNull: false,
-        field: 'floor'
-      },
-      roomPrice: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        field: 'room_price'
-      },
-      isBooked: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: 0,
-        field: 'is_booked'
+        field: 'employee_id',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       createdOn: {
         type: DataTypes.DATE,
@@ -53,12 +41,13 @@ export default function (sequelize, DataTypes) {
       }
     },
     {
-      tableName: 'hotel_rooms',
+      tableName: 'hotel_employees',
       timestamps: false
     }
   );
-  hotelRooms.associate = (models) => {
-    models.hotelRooms.belongsTo(models.hotels, { foreignKey: 'hotel_id' });
+  hotelEmployees.associate = (models) => {
+    models.hotelEmployees.belongsTo(models.users, { foreignKey: 'employee_id' });
+    models.hotelEmployees.belongsTo(models.hotels, { foreignKey: 'hotel_id' });
   };
-  return hotelRooms;
+  return hotelEmployees;
 }

@@ -13,3 +13,10 @@ export const errorResponse = (res, status, message) => {
     message
   });
 };
+
+export const formatPath = (path) => {
+  const splitPathArr = path.split('/');
+  const lastPart = splitPathArr[splitPathArr.length - 1];
+  if (!isNaN(lastPart)) splitPathArr.pop();
+  return splitPathArr.join('/');
+};
